@@ -7,7 +7,7 @@ const Error = ({ error, reset }) => {
     console.error(error)
   }, [error]);
   return(
-  <div className=" bg-slate-50 h-1/2 w-2/3 flex flex-col justify-center gap-2">
+  <div className=" bg-slate-700 h-1/2 w-2/3 flex flex-col justify-center gap-2">
     <h2 className=" text-5xl mx-auto"> Oops! </h2>
     <p>{error.message}</p>
     <button

@@ -4,7 +4,7 @@ const MovimientoPage = () => {
   }
   return (
     <main>
-    <h1 className="text-3xl">Movimiento Page </h1> 
+    <h1 className="text-3xl">Movimiento Page</h1> 
     </main>
   )
 }
