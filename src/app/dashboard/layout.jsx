@@ -7,7 +7,7 @@ const DashboardLayout = ({ children, vehiculo, movimiento }) => {
       <section className="  bg-emerald-600 h-full rounded-lg flex flex-col justify-center gap-4">
         {children}
         <div className="flex bg-emerald-700 flex-1 w-full h-full items-center justify-evenly gap-4 p-4">
-          <article className="bg-blue-600 w-full h-full rounded-lg grid place-items-center ">
+          <article className="bg-blue-600 max-w-7xl h-full rounded-lg grid place-items-center ">
             <Suspense fallback={<Loading />}>{vehiculo}</Suspense>
           </article>
           <article className="bg-red-600 w-full h-full rounded-lg grid place-items-center">

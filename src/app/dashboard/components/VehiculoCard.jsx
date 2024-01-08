@@ -3,7 +3,7 @@
 const VehiculoCard = ({result}) => {
   return (
     <div >
-          <button onClick={() => console.log(result.id)}>{result.title}</button>
+          <button className="hover:bg-cyan-300" onClick={() => console.log(result.id)}>{result.title}</button>
      </div>
   )
 }
