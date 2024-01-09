@@ -1,0 +1,7 @@
+-- CreateTable
+CREATE TABLE "Vehiculo" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "patente" TEXT NOT NULL,
+    "descripcion" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
