@@ -1,13 +1,19 @@
 "use client";
+import {useRouter} from 'next/navigation'
 
-const VehiculoCard = ({ result }) => {
+const VehiculoCard = ({ vehiculo }) => {
+
+  const router = useRouter()
+
   return (
     <div>
       <button
         className="hover:bg-cyan-300"
-        onClick={() => console.log(result.id)}
+        onClick={() => {
+          router.push(`/vehiculo/edit/${vehiculo.id}`)
+        }}
       >
-        {result.patente} 
+        {vehiculo.patente} 
       </button>
     </div>
   );

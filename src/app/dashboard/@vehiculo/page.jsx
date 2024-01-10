@@ -1,25 +1,25 @@
 import {prisma} from '@/libs/prisma'
 import VehiculoCard from "./components/VehiculoCard"
-import VehiculoForm from "./components/VehiculoForm"
+// import VehiculoForm from "./components/VehiculoForm"
+import Link from 'next/link'
 
-
-async function loadVehiculo () {
+async function loadVehiculos () {
   
   return await prisma.vehiculo.findMany()
 }
 
 const VehiculoPage = async () => {
  
-  const results = await loadVehiculo()
+  const vehiculos = await loadVehiculos()
 
       
   return (
     <main>
       <h1 className="text-3xl">Vehiculo Page</h1>
-      {results.map((result) => (
-       <VehiculoCard key={result.id} result={result}/>
+      <Link href='/newVehiculo' >Nuevo</Link>
+      {vehiculos.map((vehiculo) => (
+       <VehiculoCard key={vehiculo.id} vehiculo={vehiculo}/>
       ))}
-      <VehiculoForm/>
     </main>
   )
 }

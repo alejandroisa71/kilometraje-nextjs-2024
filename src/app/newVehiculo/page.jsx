@@ -18,19 +18,20 @@ function VehiculoForm()  {
       body: JSON.stringify({ patente, descripcion }),
     });
 
-    // const data = await res.json();
-    // console.log(data);
-    router.refresh();
+    router.push('/dashboard');
   };
 
   return (
-    <form className="bg-slate-800 w-full rounded-lg p-10" onSubmit={onSubmit}>
+    <main className='h-screen flex flex-col justify-center items-center'>
+    <h1 className='mb-5'>Nuevo Vehiculo</h1>
+    <form className="bg-slate-800 lg:w-1/4 md:w-1/2 rounded-lg p-10" onSubmit={onSubmit}>
       <label className="w-full flex flex-col mb-4">
         Patente
         <input
           type="text"
           className="border-gray-400 text-slate-900 px-1"
           id="patente"
+          autoFocus
         />
       </label>
       <label className="w-full flex flex-col mb-4">
@@ -45,6 +46,8 @@ function VehiculoForm()  {
         Crear
       </button>
     </form>
+    </main>
+
   );
 };
 
