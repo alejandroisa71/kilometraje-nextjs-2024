@@ -24,6 +24,7 @@ function VehiculoForm({ params }) {
     e.preventDefault();
 
     if (params.id) {
+      // console.log(params.id);
       const res = await fetch(`/api/vehiculo/${params.id}`, {
         method: "PUT",
         headers: {
@@ -34,7 +35,7 @@ function VehiculoForm({ params }) {
           descripcion: descripcion,
         }),
       });
-      // const data = await res.json();
+      const data = await res.json();
     } else {
       const res = await fetch("/api/vehiculo", {
         method: "POST",
@@ -43,11 +44,11 @@ function VehiculoForm({ params }) {
         },
         body: JSON.stringify({ patente, descripcion }),
       });
-      // const data = await res.json();
+      const data = await res.json();
     }
 
-    router.refresh();
     router.push("/dashboard");
+    router.refresh();
   };
 
   return (
@@ -78,27 +79,30 @@ function VehiculoForm({ params }) {
             value={descripcion}
           />
         </label>
-       <div className="flex justify-between">
-       <button className="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded" type="submit">
-          Guardar
-        </button>
-      {params.id && (
-        <button
-          className="bg-red-500 hover:bg-red-700 font-bold py-2 px-4 rounded"
-          onClick={async ()=> {
-           const res = await fetch(`/api/vehiculo/${params.id}`, {
-            method:"DELETE"
-           })
-           const data = await res.json()
-           console.log( data)
-           router.refresh()
-           router.push('/dashboard')
-          }}
-        >
-          Eliminar
-        </button>
-      )}
-       </div>
+        <div className="flex justify-between">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded"
+            type="submit"
+          >
+            Guardar
+          </button>
+          {params.id && (
+            <button
+              className="bg-red-500 hover:bg-red-700 font-bold py-2 px-4 rounded"
+              onClick={async () => {
+                const res = await fetch(`/api/vehiculo/${params.id}`, {
+                  method: "DELETE",
+                });
+                const data = await res.json();
+                // console.log(data);
+                router.push("/dashboard");
+                router.refresh();
+              }}
+            >
+              Eliminar
+            </button>
+          )}
+        </div>
       </form>
     </main>
   );

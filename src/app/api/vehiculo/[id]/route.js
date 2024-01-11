@@ -8,32 +8,38 @@ export async function GET(request, { params }) {
     },
   });
 
-  console.log(vehiculo);
+  // console.log(vehiculo);
 
   return NextResponse.json(vehiculo);
 }
 
 export async function DELETE(request, { params }) {
-  const vehiculoRemove = await prisma.vehiculo.delete({
-    where: {
-      id: Number(params.id),
-    },
-  });
+  try {
+    const vehiculoRemove = await prisma.vehiculo.delete({
+      where: {
+        id: Number(params.id),
+      },
+    });
 
-  console.log(vehiculoRemove);
-
-  return NextResponse.json("Eliminado Vehiculo");
+    return NextResponse.json(vehiculoRemove);
+  } catch (error) {
+    return NextResponse(error.message);
+  }
 }
 
-export async function PUT(request, {params}) {
-  const data = await request.json();
+export async function PUT(request, { params }) {
+  try {
+    const data = await request.json();
 
   const vehiculoUpdate = await prisma.vehiculo.update({
     where: {
       id: Number(params.id),
     },
-    data
+    data: data,
   });
 
   return NextResponse.json(vehiculoUpdate);
+  } catch (error) {
+   return NextResponse.json(error.message)
+  }
 }
