@@ -10,10 +10,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Vehiculo{
-  id Int @id @default(autoincrement())
-  patente String
+model Vehiculo {
+  id          Int      @id @default(autoincrement())
+  patente     String
   descripcion String
-  createdAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  movimientos Movimiento[]
+}
 
+model Movimiento {
+  id           Int  @id @default(autoincrement())
+  vehiculoId   Int
+  fecha        DateTime @default(now())
+  inicial      Int
+  final        Int
+  descripcion  String
+  novedades    String
+  loc_origen   String
+  prov_origen  String
+  loc_destino  String
+  prov_destino String
+  chofer       String
+  vehiculo     Vehiculo @relation(fields: [vehiculoId], references: [id])
 }

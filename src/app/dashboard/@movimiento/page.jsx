@@ -1,11 +1,38 @@
-const MovimientoPage = () => {
+import { prisma } from "@/libs/prisma";
+
+async function loadMovimientos({ params }) {
+  console.log(params);
+
+  return await prisma.movimiento.findMany({
+    where: {
+      vehiculoId: 1,
+    },
+  });
+}
+
+const MovimientoPage = async ({ params }) => {
+  // console.log(params)
+
+  const movimientos = await loadMovimientos(params);
+
   if (!true) {
-    throw new Error("This is fine")
+    throw new Error("This is fine");
   }
   return (
     <main>
-    <h1 className="text-3xl">Movimiento Page</h1> 
+      <h1 className="text-3xl">Movimiento Page</h1>
+      {movimientos.length > 0 ? (
+        movimientos.map((movimiento) => {
+          return (
+            <div key={movimiento.id}>
+              <h2>{movimiento.descripcion}</h2>
+            </div>
+          );
+        })
+      ) : (
+        <>No hay movimientos </>
+      )}
     </main>
-  )
-}
-export default MovimientoPage
+  );
+};
+export default MovimientoPage;
