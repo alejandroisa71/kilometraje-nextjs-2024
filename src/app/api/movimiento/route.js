@@ -29,7 +29,7 @@ export async function POST(request) {
       final: Number(final),
       novedades,
       loc_origen: locOrigen,
-      prov_origen: "Tucuman",
+      prov_origen: provOrigen,
       loc_destino: "San Miguel de Tucuman",
       prov_destino: "Tucuman",
       chofer: "Galvan",

@@ -9,6 +9,7 @@ function NewMovimiento({ params }) {
   const [final, setFinal] = useState(null);
   const [novedades, setNovedades] = useState("");
   const [locOrigen, setLocOrigen] = useState("");
+  const [provOrigen, setProvOrigen] = useState("");
   const { id } = params;
 
   console.log(id)
@@ -64,7 +65,7 @@ function NewMovimiento({ params }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ descripcion,inicial,final,novedades, locOrigen, id }),
+      body: JSON.stringify({ descripcion,inicial,final,novedades, locOrigen, provOrigen, id }),
     });
     const data = await res.json();
     router.push("/dashboard");
@@ -75,31 +76,23 @@ function NewMovimiento({ params }) {
     <main className="h-screen flex flex-col justify-center items-center">
       <h1 className="mb-5">Nuevo Movimiento</h1>
       <form
-        className="bg-slate-800 lg:w-1/4 md:w-1/2 rounded-lg p-10"
+        className="bg-slate-800 lg:w-1/3 md:w-1/2 rounded-lg p-10"
         onSubmit={onSubmit}
       >
-        {/* <label className="w-full flex flex-col mb-4">
-          Patente
+      
+      
+       <div className="md:grid grid-cols-3 gap-2">
+       <label className="w-full flex flex-col mb-4">
+          Fecha
           <input
-            type="text"
+            type="date"
             className="border-gray-400 text-slate-900 px-1"
-            id="patente"
-            autoFocus
-            onChange={(e) => setPatente(e.target.value)}
-            value={patente}
-          />
-        </label> */}
-        <label className="w-full flex flex-col mb-4">
-          Descripcion
-          <input
-            type="text"
-            className="border-gray-400 text-slate-900 px-1"
-            id="descripcion"
-            onChange={(e) => setDescripcion(e.target.value)}
-            value={descripcion}
+            // id="inicial"
+            // onChange={(e) => setInicial(e.target.value)}
+            // value={inicial}
           />
         </label>
-        <label className="w-full flex flex-col mb-4">
+       <label className="w-full flex flex-col mb-4">
           Km Inicial
           <input
             type="text"
@@ -119,6 +112,17 @@ function NewMovimiento({ params }) {
             value={final}
           />
         </label>
+       </div>
+        <label className="w-full flex flex-col mb-4">
+          Descripcion
+          <input
+            type="text"
+            className="border-gray-400 text-slate-900 px-1"
+            id="descripcion"
+            onChange={(e) => setDescripcion(e.target.value)}
+            value={descripcion}
+          />
+        </label>
         <label className="w-full flex flex-col mb-4">
           Novedades
           <input
@@ -129,7 +133,8 @@ function NewMovimiento({ params }) {
             value={novedades}
           />
         </label>
-        <label className="w-full flex flex-col mb-4">
+       <div className="md:grid grid-cols-2 gap-2">
+       <label className="w-full flex flex-col mb-4">
           Localidad de origen
           <input
             type="text"
@@ -139,6 +144,17 @@ function NewMovimiento({ params }) {
             value={locOrigen}
           />
         </label>
+        <label className="w-full flex flex-col mb-4">
+          Provincia de Origen
+          <input
+            type="text"
+            className="border-gray-400 text-slate-900 px-1"
+            id="provOrigen"
+            onChange={(e) => setProvOrigen(e.target.value)}
+            value={provOrigen}
+          />
+        </label>
+       </div>
         <div className="flex justify-between">
           <button
             className="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded"
