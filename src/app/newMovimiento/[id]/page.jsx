@@ -5,9 +5,13 @@ import { useEffect, useState } from "react";
 function NewMovimiento({ params }) {
   //   const [patente, setPatente] = useState("");
   const [descripcion, setDescripcion] = useState("");
+  const [inicial, setInicial] = useState(null);
+  const [final, setFinal] = useState(null);
+  const [novedades, setNovedades] = useState("");
+  const [locOrigen, setLocOrigen] = useState("");
   const { id } = params;
 
-  // console.log(id)
+  console.log(id)
 
   const router = useRouter();
 
@@ -60,7 +64,7 @@ function NewMovimiento({ params }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ descripcion, id }),
+      body: JSON.stringify({ descripcion,inicial,final,novedades, locOrigen, id }),
     });
     const data = await res.json();
     router.push("/dashboard");
@@ -69,7 +73,7 @@ function NewMovimiento({ params }) {
 
   return (
     <main className="h-screen flex flex-col justify-center items-center">
-      <h1 className="mb-5">Nuevo Vehiculo</h1>
+      <h1 className="mb-5">Nuevo Movimiento</h1>
       <form
         className="bg-slate-800 lg:w-1/4 md:w-1/2 rounded-lg p-10"
         onSubmit={onSubmit}
@@ -93,6 +97,46 @@ function NewMovimiento({ params }) {
             id="descripcion"
             onChange={(e) => setDescripcion(e.target.value)}
             value={descripcion}
+          />
+        </label>
+        <label className="w-full flex flex-col mb-4">
+          Km Inicial
+          <input
+            type="text"
+            className="border-gray-400 text-slate-900 px-1"
+            id="inicial"
+            onChange={(e) => setInicial(e.target.value)}
+            value={inicial}
+          />
+        </label>
+        <label className="w-full flex flex-col mb-4">
+          Km Final
+          <input
+            type="text"
+            className="border-gray-400 text-slate-900 px-1"
+            id="final"
+            onChange={(e) => setFinal(e.target.value)}
+            value={final}
+          />
+        </label>
+        <label className="w-full flex flex-col mb-4">
+          Novedades
+          <input
+            type="text"
+            className="border-gray-400 text-slate-900 px-1"
+            id="novedades"
+            onChange={(e) => setNovedades(e.target.value)}
+            value={novedades}
+          />
+        </label>
+        <label className="w-full flex flex-col mb-4">
+          Localidad de origen
+          <input
+            type="text"
+            className="border-gray-400 text-slate-900 px-1"
+            id="locOrigen"
+            onChange={(e) => setLocOrigen(e.target.value)}
+            value={locOrigen}
           />
         </label>
         <div className="flex justify-between">

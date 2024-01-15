@@ -1,28 +1,43 @@
 import { prisma } from "@/libs/prisma";
 import { NextResponse } from "next/server";
 
+export async function GET() {
+  const movimientos = await prisma.movimiento.findMany();
 
-export async function GET(){
-
-   const movimientos= await prisma.movimiento.findMany()
-
-   return NextResponse.json(movimientos)
+  return NextResponse.json(movimientos);
 }
 
-export async  function POST(request){
+export async function POST(request) {
+  const {
+    descripcion,
+    inicial,
+    final,
+    novedades,
+    locOrigen,
+    provOrigen,
+    chofer,
+    id
+  } = await request.json();
 
-   const { descripcion } = await request.json();
-
-   const newMovimiento = await prisma.movimiento.create({
-      data:{
-         descripcion,
-         vehiculoId:1
-        
-      }
-   })
-   return NextResponse.json(newMovimiento)
+  console.log('--------------------------------')
+  console.log(id);
+  console.log('----')
+  const newMovimiento = await prisma.movimiento.create({
+    data: {
+      descripcion,
+      inicial: Number(inicial),
+      final: Number(final),
+      novedades,
+      loc_origen: locOrigen,
+      prov_origen: "Tucuman",
+      loc_destino: "San Miguel de Tucuman",
+      prov_destino: "Tucuman",
+      chofer: "Galvan",
+      vehiculoId: Number(id),
+    },
+  });
+  return NextResponse.json(newMovimiento);
 }
-
 
 // export async function POST(request) {
 //    const { patente, descripcion } = await request.json();
@@ -32,6 +47,6 @@ export async  function POST(request){
 //        descripcion,
 //      },
 //    });
- 
+
 //    return NextResponse.json(newVehiculo);
 //  }
