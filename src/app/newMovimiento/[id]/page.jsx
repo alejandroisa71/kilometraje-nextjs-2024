@@ -5,14 +5,20 @@ import { useEffect, useState } from "react";
 function NewMovimiento({ params }) {
   //   const [patente, setPatente] = useState("");
   const [descripcion, setDescripcion] = useState("");
-  const [inicial, setInicial] = useState(null);
-  const [final, setFinal] = useState(null);
+  const [inicial, setInicial] = useState(0);
+  const [final, setFinal] = useState(0);
   const [novedades, setNovedades] = useState("");
   const [locOrigen, setLocOrigen] = useState("");
   const [provOrigen, setProvOrigen] = useState("");
   const { id } = params;
 
-  console.log(id)
+
+  
+
+
+
+
+  // console.log(id)
 
   const router = useRouter();
 

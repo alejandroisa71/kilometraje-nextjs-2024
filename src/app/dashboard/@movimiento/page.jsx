@@ -1,17 +1,27 @@
+// "use client"
 import { prisma } from "@/libs/prisma";
 
+
 async function loadMovimientos({ params }) {
+
+  
+
+
   console.log(params);
 
   return await prisma.movimiento.findMany({
     where: {
-      vehiculoId: 1,
+      vehiculoId: 2,
     },
   });
 }
 
 const MovimientoPage = async ({ params }) => {
-  // console.log(params)
+
+  // const { count } = useStore()
+  // console.log(count)
+  console.log(params)
+  console.log("------")
 
   const movimientos = await loadMovimientos(params);
 

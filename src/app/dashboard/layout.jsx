@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import Loading from "./loading";
 
 const DashboardLayout = ({ children, vehiculo, movimiento }) => {
+  // console.log(children)
   return (
     <main className="max-w-7xl h-screen flex flex-col bg-slate-900 mx-auto p-4 gap-4 text-center">
       <section className="  bg-emerald-600 h-full rounded-lg flex flex-col justify-center gap-4">
